@@ -141,6 +141,7 @@ button.unit-active-highlight {
 
 .weather-card img {
   margin-bottom: 50px;
+  max-width: 100%;
 }
 
 .weather-left {
@@ -180,6 +181,10 @@ button.unit-active-highlight {
 @media (max-width: 768px) {
   .main {
     height: 100%;
+    width: 100%;
+  }
+
+  .only-search {
     width: 100%;
   }
 

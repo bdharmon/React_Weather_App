@@ -36,16 +36,13 @@ export default function App() {
     }
   };
 
-  // API Key
-  const apiKey = "a4e148d8909bcf95179cfecbb2965cbe";
-
   // Fetch weather
   const fetchData = async (e, cityID) => {
     e.preventDefault();
     setSearchEntry("");
 
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?id=${cityID}&appid=${apiKey}&units=${unitMeasure}`
+      `https://api.openweathermap.org/data/2.5/weather?id=${cityID}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=${unitMeasure}`
     );
 
     const data = await response.json();
