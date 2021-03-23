@@ -86,7 +86,7 @@ export default function CurrentWeather({ weatherData }) {
           <h5>{weatherData.name}</h5>
         </div>
 
-        <img src={icon} alt="" />
+        <img className="weather-img" src={icon} alt="" />
 
         <div id="temp">
           <i className="fas fa-thermometer-full"></i>
