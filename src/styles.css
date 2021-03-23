@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  text-align: center;
+}
+
+body {
+  background: url('./nature_img.png') no-repeat center;
+  color: white;
+}
+
+#degree-symbol {
+  font-size: 0.7rem;
+}
+
+.filtered-list {
+  list-style: none;
+}
+
+.filtered-list li {
+  align-items: center;
+  border-bottom: 1px solid rgb(61, 61, 61);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.filtered-list li:hover {
+  background-color: rgb(61, 61, 61);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.filtered-id {
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.main {
+  background-color: rgba(24, 24, 24, 0.6);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 700px;
+}
+
+nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  text-align: left;
+}
+
+nav h1 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.only-search {
+  background-color: rgba(24, 24, 24, 0.6);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-bottom: 900px;
+  width: 700px;
+}
+
+.search-bar {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-bar input {
+  border: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 1.1rem;
+  height: 100%;
+  padding-left: 10px;
+  width: 100%;
+}
+
+.search-bar input:focus {
+  outline: none;
+}
+
+.temperature {
+  display: flex;
+}
+
+.units {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.units button {
+  background: none;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-size: 0.9rem;
+  font-weight: normal;
+  padding: 10px;
+}
+
+.units button:focus {
+  outline: none;
+}
+
+.units button:hover {
+  background-color: rgb(119, 119, 119);
+  color: white;
+  cursor: pointer;
+}
+
+button.unit-active-highlight {
+  background: white;
+}
+
+.weather-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px;
+}
+
+.weather-card img {
+  margin-bottom: 50px;
+}
+
+.weather-left {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  justify-content: space-evenly;
+  line-height: 4rem;
+}
+
+.weather-left div {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-right {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.8rem;
+  justify-content: space-evenly;
+  line-height: 3rem;
+}
+
+.weather-right div {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 160px;
+  justify-content: center;
+  width: 330px;
+}
