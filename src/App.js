@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import CurrentWeather from "./components/CurrentWeather";
 import Nav from "./components/Nav";
-import cityList from "./data/sortedCities.json";
 import "./styles.css";
 
 export default function App() {
   const [searchEntry, setSearchEntry] = useState("");
   const [unitMeasure, setUnitMeasure] = useState("imperial");
   const [weatherData, setWeatherData] = useState({
-    id: null,
+    country: null,
     name: null,
     humidity: null,
     temp: null,
@@ -27,7 +26,7 @@ export default function App() {
   };
 
   // Unit Measurement Handler
-  const unitMeasureHandler = (e, unit) => {
+  const unitMeasureHandler = (unit) => {
     if (unit === unitMeasure) {
       return null;
     }
@@ -37,18 +36,18 @@ export default function App() {
   };
 
   // Fetch weather
-  const fetchData = async (e, cityID) => {
+  const fetchData = async (e, city) => {
     e.preventDefault();
     setSearchEntry("");
 
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?id=${cityID}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=${unitMeasure}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=${unitMeasure}`
     );
 
     const data = await response.json();
 
     const testData = { ...weatherData };
-    testData.id = data.id;
+    testData.country = data.sys.country;
     testData.name = data.name;
     testData.humidity = data.main.humidity;
     testData.temp = data.main.temp;
@@ -61,33 +60,6 @@ export default function App() {
 
     setWeatherData(testData);
   };
-
-  // Search Filter (Binary Search)
-  const filteredData = () => {
-    let left = 0;
-    let right = cityList.length - 1;
-
-    while (left <= right) {
-      let mid = Math.floor((left + right) / 2);
-
-      if (cityList[mid].name === searchEntry) {
-        return (
-          <li onClick={(e) => fetchData(e, cityList[mid].id)}>
-            <span>{cityList[mid].name}, {cityList[mid].country}</span>
-            <span className="filtered-id">iD: {cityList[mid].id}</span>
-          </li>);
-      }
-      else if (searchEntry < cityList[mid].name) {
-        right = mid - 1;
-      }
-      else {
-        left = mid + 1;
-      }
-    }
-    return null;
-  };
-
-  const runFilter = filteredData();
 
   // Set style for search bar on app load
   let searchStyle;
@@ -102,7 +74,7 @@ export default function App() {
     <div className="App">
       <Nav unitMeasureHandler={unitMeasureHandler} unitMeasure={unitMeasure} />
       <main className={searchStyle}>
-        <SearchBar searchEntry={searchEntry} searchHandler={searchHandler} filteredData={runFilter} />
+        <SearchBar searchEntry={searchEntry} searchHandler={searchHandler} fetchData={fetchData} />
 
         {weatherData.name === null ? null : (
           <CurrentWeather weatherData={weatherData} unitMeasure={unitMeasure} />

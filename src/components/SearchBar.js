@@ -1,22 +1,18 @@
 import "../styles.css";
 
-export default function SearchBar({ searchEntry, searchHandler, filteredData }) {
+export default function SearchBar({ searchEntry, searchHandler, fetchData }) {
 
   return (
 
     <div>
-      <ul className="filtered-list">
-        {filteredData}
-      </ul>
-
-      <form className="search-bar">
+      <form className="search-bar" onSubmit={(e) => fetchData(e, searchEntry)}>
         <input
-          onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
           type="text"
           placeholder="Search City..."
           value={searchEntry}
           onChange={(e) => searchHandler(e)}
-        ></input>
+        >
+        </input>
       </form>
     </div>
   );

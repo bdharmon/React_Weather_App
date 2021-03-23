@@ -83,7 +83,7 @@ export default function CurrentWeather({ weatherData }) {
       <div className="weather-left">
         <div id="city-name">
           <i className="fas fa-city"></i>
-          <h5>{weatherData.name}</h5>
+          <h5>{weatherData.name}, {weatherData.country}</h5>
         </div>
 
         <img className="weather-img" src={icon} alt="" />

@@ -21,30 +21,6 @@ body {
   font-size: 0.7rem;
 }
 
-.filtered-list {
-  list-style: none;
-}
-
-.filtered-list li {
-  align-items: center;
-  border-bottom: 1px solid rgb(61, 61, 61);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-}
-
-.filtered-list li:hover {
-  background-color: rgb(61, 61, 61);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.filtered-id {
-  font-size: 0.8rem;
-  margin-left: auto;
-}
-
 .main {
   background-color: rgba(24, 24, 24, 0.6);
   border-radius: 10px;
