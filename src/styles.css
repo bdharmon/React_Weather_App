@@ -13,7 +13,7 @@
 }
 
 body {
-  background: url('./nature_img.png') no-repeat center;
+  background: url('./nature_img.png') no-repeat center center/cover;
   color: white;
 }
 
