@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import SearchBar from "./components/SearchBar";
 import CurrentWeather from "./components/CurrentWeather";
 import Nav from "./components/Nav";
@@ -19,6 +19,40 @@ export default function App() {
     weatherDescription: null,
     windSpeed: null
   });
+
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      // Your useEffect code here to be run on update
+      const fetchData1 = async (city) => {
+
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=${unitMeasure}`
+        );
+
+        const data = await response.json();
+
+        const testData = { ...weatherData };
+        testData.country = data.sys.country;
+        testData.name = data.name;
+        testData.humidity = data.main.humidity;
+        testData.temp = data.main.temp;
+        testData.time = data.dt;
+        testData.timeZone = data.timezone;
+        testData.weatherID = data.weather[0].id;
+        testData.weatherMain = data.weather[0].main;
+        testData.weatherDescription = data.weather[0].description;
+        testData.windSpeed = data.wind.speed;
+
+        setWeatherData(testData);
+      };
+
+      fetchData1(weatherData.name);
+    }
+  }, [unitMeasure]);
 
   // Search field text
   const searchHandler = (e) => {

@@ -7,7 +7,18 @@ import rain from "../weatherIcons/rain.svg";
 import snow from "../weatherIcons/snow.svg";
 import thunderstorm from "../weatherIcons/thunderstorm.svg";
 
-export default function CurrentWeather({ weatherData }) {
+export default function CurrentWeather({ weatherData, unitMeasure }) {
+
+  let degrees;
+  let windSpeed = "";
+  if (unitMeasure === "imperial") {
+    degrees = "&#8457;";
+    windSpeed = "mph";
+  }
+  else if (unitMeasure === "metric") {
+    degrees = "&#8451;";
+    windSpeed = "m/s"
+  }
 
   const range = (start, end, length = end - start + 1) =>
     Array.from({ length }, (_, i) => start + i);
@@ -90,7 +101,7 @@ export default function CurrentWeather({ weatherData }) {
 
         <div id="temp">
           <i className="fas fa-thermometer-full"></i>
-          <h5>{Math.floor(weatherData.temp)} &#778;</h5>
+          <h5>{Math.floor(weatherData.temp)} <span dangerouslySetInnerHTML={{ __html: degrees }}></span></h5>
         </div>
 
         <div id="weather-sky"><h5>{weatherData.weatherMain}</h5></div>
@@ -105,7 +116,7 @@ export default function CurrentWeather({ weatherData }) {
         <div>
           <i className="fas fa-wind"></i>
           <h5>Wind Speed</h5>
-          {weatherData.windSpeed}
+          {weatherData.windSpeed} {windSpeed}
         </div>
 
         <div>
